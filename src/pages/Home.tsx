@@ -30,7 +30,7 @@ const personas = [
   },
 ];
 
-const Index = () => {
+const Home = () => {
   const navigate = useNavigate();
 
   const handlePersonaSelect = (personaId: string) => {
@@ -43,7 +43,7 @@ const Index = () => {
       <header className="border-b border-border bg-background px-6 py-4">
         <div className="flex items-center justify-between max-w-3xl mx-auto">
           <div className="flex items-center gap-3">
-            <Coffee className="w-7 h-7 text-orange-600" />
+            {/* <Coffee className="w-7 h-7 text-orange-600" /> */}
             <div>
               <h1 className="text-xl font-bold text-foreground">Mentor Ji</h1>
               <p className="text-xs text-muted-foreground">
@@ -96,7 +96,7 @@ const Index = () => {
                 className="group cursor-pointer"
                 onClick={() => handlePersonaSelect(persona.id)}
               >
-                <div className="bg-card border border-border rounded-xl p-6 hover:border-orange-200 dark:hover:border-orange-700 hover:shadow-sm hover:-translate-y-0.5 transition-all duration-300 ease-out h-full">
+                <div className="bg-card border border-border rounded-xl p-6 hover:border-orange-200 dark:hover:border-orange-400 hover:shadow-sm hover:-translate-y-0.5 transition-all duration-300 ease-out h-full">
                   {/* Header */}
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-3">
@@ -216,4 +216,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Home;

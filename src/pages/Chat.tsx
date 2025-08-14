@@ -44,12 +44,10 @@ const Chat = () => {
 
   const persona = personas[personaId as keyof typeof personas];
 
-  // Auto-scroll to bottom when new messages are added
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  // Mobile viewport height fix
   useEffect(() => {
     const setVH = () => {
       const vh = window.innerHeight * 0.01;
@@ -94,7 +92,6 @@ const Chat = () => {
     setIsLoading(true);
 
     try {
-      // Get AI response
       const aiResponse = await chatService.sendMessage(
         personaId as string,
         currentMessage,
@@ -110,7 +107,6 @@ const Chat = () => {
 
       setMessages(prev => [...prev, botMessage]);
 
-      // Update chat history
       setChatHistory([
         ...updatedHistory,
         { role: "assistant", content: aiResponse },
@@ -118,7 +114,6 @@ const Chat = () => {
     } catch (error) {
       console.error("Failed to get AI response:", error);
 
-      // Fallback message
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
         content:
@@ -179,12 +174,11 @@ const Chat = () => {
       {/* Messages Area */}
       <div className="flex-1 overflow-y-auto bg-muted/30 p-4">
         <div className="max-w-3xl mx-auto h-full flex flex-col">
-          {/* Empty State */}
           {messages.length === 0 && (
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
+              // initial={{ opacity: 0, y: 20 }
+              // animate={{ opacity: 1, y: 0 }}
+              // transition={{ duration: 0.4 }}
               className="flex flex-col items-center justify-center h-full text-center py-12"
             >
               <div className="w-20 h-20 bg-orange-100 dark:bg-orange-950/50 rounded-full overflow-hidden mb-4">
@@ -249,7 +243,7 @@ const Chat = () => {
                         >
                           {message.sender === "bot" ? (
                             <div className="text-sm leading-relaxed prose prose-sm max-w-none prose-headings:text-card-foreground prose-p:text-card-foreground prose-strong:text-card-foreground prose-code:text-foreground prose-code:bg-muted prose-code:px-1 prose-code:py-0.5 prose-code:rounded dark:prose-headings:text-card-foreground dark:prose-p:text-card-foreground">
-                              <ReactMarkdown>{message.content}</ReactMarkdown>
+                              <ReactMarkdown>{message?.content}</ReactMarkdown>
                             </div>
                           ) : (
                             <p className="text-sm leading-relaxed whitespace-pre-wrap">
@@ -300,8 +294,6 @@ const Chat = () => {
                   </div>
                 </motion.div>
               )}
-
-              {/* Scroll anchor - now inside the scrollable container */}
               <div ref={messagesEndRef} />
             </div>
           )}
