@@ -308,7 +308,7 @@ const Chat = () => {
                     </div>
 
                     {/* Quick Info */}
-                    <div className="text-center pt-4 sm:pt-8">
+                    <div className="text-center pt-4 sm:pt-8 pb-4">
                       <p className="text-xs sm:text-sm text-muted-foreground/80">
                         Or type your own question below
                       </p>
