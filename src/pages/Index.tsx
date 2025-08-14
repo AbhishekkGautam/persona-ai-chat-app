@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { MessageCircle, Coffee, Heart } from "lucide-react";
+import { Languages, Smile, Brain, Coffee } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 const personas = [
@@ -8,9 +8,11 @@ const personas = [
     id: "hitesh",
     name: "Hitesh Choudhary",
     title: "Full-Stack Educator",
-    description: "Making coding accessible through practical tutorials and genuine mentorship",
-    bio: "Join me for a casual conversation about JavaScript, React, or anything tech. Let's keep it simple and fun! ☕",
-    avatar: "☕",
+    description:
+      "Making coding accessible through practical tutorials and genuine mentorship",
+    bio: "Join me for a casual conversation about JavaScript, React, or anything tech. Let's keep it simple and fun!",
+    avatar: "/images/hitesh_choudhary.jpg",
+    emoji: "☕",
     mood: "Always ready for chai",
     vibe: "Calm & Encouraging",
   },
@@ -18,9 +20,11 @@ const personas = [
     id: "piyush",
     name: "Piyush Garg",
     title: "System Design Expert",
-    description: "Building scalable systems and sharing practical development insights",
-    bio: "Let's talk about real-world development, DevOps, or your coding journey. No pressure, just good vibes! 🚀",
-    avatar: "🚀",
+    description:
+      "Building scalable systems and sharing practical development insights",
+    bio: "Let's talk about real-world development, DevOps, or your coding journey. No pressure, just good vibes!",
+    avatar: "/images/piyush_garg.jpg",
+    emoji: "🚀",
     mood: "Energetic & Motivating",
     vibe: "Direct & Honest",
   },
@@ -34,24 +38,20 @@ const Index = () => {
   };
 
   return (
-    <div className="lg:h-screen bg-background flex flex-col overflow-hidden">
+    <div className="bg-background flex flex-col overflow-hidden">
       {/* Header */}
       <header className="border-b border-border bg-background px-6 py-4">
-        <div className="flex items-center justify-between max-w-4xl mx-auto">
+        <div className="flex items-center justify-between max-w-3xl mx-auto">
           <div className="flex items-center gap-3">
             <Coffee className="w-7 h-7 text-orange-600" />
             <div>
-              <h1 className="text-xl font-bold text-foreground">Chai & Code</h1>
+              <h1 className="text-xl font-bold text-foreground">Mentor Ji</h1>
               <p className="text-xs text-muted-foreground">
                 Casual chats with your favorite devs
               </p>
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <Heart className="w-4 h-4 text-red-500" />
-              <span>Made with love</span>
-            </div>
             <ThemeToggle />
           </div>
         </div>
@@ -86,53 +86,62 @@ const Index = () => {
             {personas.map((persona, index) => (
               <motion.div
                 key={persona.id}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 + index * 0.1 }}
+                transition={{
+                  delay: 0.1 + index * 0.05,
+                  duration: 0.4,
+                  ease: "easeOut",
+                }}
                 className="group cursor-pointer"
                 onClick={() => handlePersonaSelect(persona.id)}
               >
-                                 <div className="bg-card border border-border rounded-xl p-6 hover:border-orange-300 dark:hover:border-orange-600 hover:shadow-md transition-all duration-200 h-full">
-                   {/* Header */}
-                   <div className="flex items-center justify-between mb-4">
-                     <div className="flex items-center gap-3">
-                       <div className="w-12 h-12 bg-orange-50 dark:bg-orange-950/50 rounded-xl flex items-center justify-center text-2xl">
-                         {persona.avatar}
-                       </div>
-                       <div>
-                         <h3 className="text-lg font-semibold text-card-foreground">
-                           {persona.name}
-                         </h3>
-                         <p className="text-sm text-orange-600 dark:text-orange-400 font-medium">
-                           {persona.title}
-                         </p>
-                       </div>
-                     </div>
-                     <MessageCircle className="w-5 h-5 text-muted-foreground group-hover:text-orange-500 dark:group-hover:text-orange-400 transition-colors" />
-                   </div>
+                <div className="bg-card border border-border rounded-xl p-6 hover:border-orange-200 dark:hover:border-orange-700 hover:shadow-sm hover:-translate-y-0.5 transition-all duration-300 ease-out h-full">
+                  {/* Header */}
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 bg-orange-50 dark:bg-orange-950/50 rounded-xl overflow-hidden">
+                        <img
+                          src={persona.avatar}
+                          alt={persona.name}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-card-foreground">
+                          {persona.name}
+                        </h3>
+                        <p className="text-sm text-orange-600 dark:text-orange-400 font-medium">
+                          {persona.title}
+                        </p>
+                      </div>
+                    </div>
+                    <span className="text-orange-600 dark:text-orange-400 font-medium text-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                      Chat now →
+                    </span>
+                  </div>
 
-                   {/* Description */}
-                   <p className="text-muted-foreground text-sm mb-4 leading-relaxed">
-                     {persona.description}
-                   </p>
+                  {/* Description */}
+                  <p className="text-muted-foreground text-sm mb-4 leading-relaxed">
+                    {persona.description}
+                  </p>
 
-                   {/* Bio */}
-                   <p className="text-card-foreground text-sm mb-6 leading-relaxed">
-                     {persona.bio}
-                   </p>
+                  {/* Bio */}
+                  <p className="text-card-foreground text-sm leading-relaxed">
+                    {persona.bio}
+                  </p>
 
-                   {/* Footer */}
-                   <div className="flex items-center justify-between pt-4 border-t border-border">
-                     <div className="flex items-center gap-3 text-xs text-muted-foreground">
-                       <span>{persona.mood}</span>
-                       <span>•</span>
-                       <span>{persona.vibe}</span>
-                     </div>
-                     <span className="text-orange-600 dark:text-orange-400 font-medium text-sm opacity-0 group-hover:opacity-100 transition-opacity">
-                       Chat now →
-                     </span>
-                   </div>
-                 </div>
+                  {/* Footer */}
+                  {/* <div className="flex items-center justify-between pt-4 border-t border-border">
+                    <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                      <span>{persona.mood}</span>
+                      <span>{persona.vibe}</span>
+                    </div>
+                    <span className="text-orange-600 dark:text-orange-400 font-medium text-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                      Chat now →
+                    </span>
+                  </div> */}
+                </div>
               </motion.div>
             ))}
           </div>
@@ -142,44 +151,56 @@ const Index = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1 }}
+              transition={{ delay: 0.4, duration: 0.4 }}
               className="bg-card border border-border rounded-lg p-4 text-center"
             >
-              <MessageCircle className="w-6 h-6 text-orange-500 mx-auto mb-2" />
-              <h4 className="font-medium text-card-foreground text-sm mb-1">Bilingual Support</h4>
-              <p className="text-xs text-muted-foreground">Hindi & English conversations</p>
+              <Languages className="w-6 h-6 text-orange-500 mx-auto mb-2" />
+              <h4 className="font-medium text-card-foreground text-sm mb-1">
+                Bilingual Support
+              </h4>
+              <p className="text-xs text-muted-foreground">
+                Hindi & English conversations
+              </p>
             </motion.div>
-            
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.1 }}
+              transition={{ delay: 0.4, duration: 0.4 }}
               className="bg-card border border-border rounded-lg p-4 text-center"
             >
-              <Coffee className="w-6 h-6 text-orange-500 mx-auto mb-2" />
-              <h4 className="font-medium text-card-foreground text-sm mb-1">Casual & Fun</h4>
-              <p className="text-xs text-muted-foreground">Relaxed learning environment</p>
+              <Smile className="w-6 h-6 text-orange-500 mx-auto mb-2" />
+              <h4 className="font-medium text-card-foreground text-sm mb-1">
+                Casual & Fun
+              </h4>
+              <p className="text-xs text-muted-foreground">
+                Relaxed learning environment
+              </p>
             </motion.div>
-            
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.2 }}
+              transition={{ delay: 0.4, duration: 0.4 }}
               className="bg-card border border-border rounded-lg p-4 text-center"
             >
-              <Heart className="w-6 h-6 text-orange-500 mx-auto mb-2" />
-              <h4 className="font-medium text-card-foreground text-sm mb-1">Judgment Free</h4>
-              <p className="text-xs text-muted-foreground">Ask anything, just good vibes</p>
+              <Brain className="w-6 h-6 text-orange-500 mx-auto mb-2" />
+              <h4 className="font-medium text-card-foreground text-sm mb-1">
+                AI-Powered Mentorship
+              </h4>
+              <p className="text-xs text-muted-foreground">
+                Smart responses, real expertise
+              </p>
             </motion.div>
           </div>
         </div>
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-border bg-background px-6 py-4">
+      <footer className="border-t md:border-t-0 border-border bg-background px-6 py-4">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-sm text-muted-foreground">
-            Built with ❤️ using React, TypeScript & OpenAI • Made by{" "}
+            Built with React, TypeScript & OpenAI • Made by{" "}
             <a
               href="https://twitter.com/helloAbhishekk"
               target="_blank"
