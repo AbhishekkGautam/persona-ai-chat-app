@@ -15,7 +15,8 @@ const initializeOpenAI = (): boolean => {
     validateOpenAIConfig();
     openaiClient = new OpenAI({
       apiKey: openaiConfig.apiKey,
-      dangerouslyAllowBrowser: true,
+      dangerouslyAllowBrowser: true, 
+	  // TODO: Bad practice. working on building the proxy backend server for openai api usage.
     });
     isInitialized = true;
     return true;
