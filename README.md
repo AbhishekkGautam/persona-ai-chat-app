@@ -35,6 +35,7 @@ Create a `.env.local` file:
 
 ```env
 VITE_OPENAI_API_KEY=your_openai_api_key_here
+VITE_OPENAI_MODEL=your_preferred_model
 ```
 
 Get your API key from [OpenAI Platform](https://platform.openai.com/api-keys).
@@ -82,13 +83,6 @@ Coming soon...
 3. Commit your changes (`git commit -m 'Add amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
-
-## 🙏 Acknowledgments
-
-- **Hitesh Choudhary** - For inspiring developers worldwide
-- **Piyush Garg** - For democratizing tech education
-- **OpenAI** - For powerful AI capabilities
-- **shadcn** - For beautiful UI components
 
 ---
 
