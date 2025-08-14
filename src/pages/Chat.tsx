@@ -337,7 +337,7 @@ const Chat = () => {
                     }`}
                   >
                     <div
-                      className={`flex items-end gap-3 max-w-[90%] sm:max-w-[80%]`}
+                      className={`flex items-end gap-3 max-w-[95%] sm:max-w-[80%]`}
                     >
                       {message.sender === "bot" && (
                         <div className="w-8 h-8 bg-muted rounded-full overflow-hidden flex-shrink-0 mb-1">
