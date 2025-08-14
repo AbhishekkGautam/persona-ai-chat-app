@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { Languages, Smile, Brain, Coffee } from "lucide-react";
+import { Languages, Smile, Brain, Coffee, ArrowRight } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 const personas = [
@@ -116,9 +116,7 @@ const Home = () => {
                         </p>
                       </div>
                     </div>
-                    <span className="text-orange-600 dark:text-orange-400 font-medium text-sm opacity-0 group-hover:opacity-100 transition-opacity">
-                      Chat now →
-                    </span>
+                    <ArrowRight className="w-5 h-5 text-orange-600 dark:text-orange-400 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
 
                   {/* Description */}
