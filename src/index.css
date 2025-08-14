@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Tech Educator Design System - Friendly, approachable, warm */
+
+@layer base {
+  :root {
+    --background: 25 100% 98%;
+    --foreground: 210 20% 15%;
+
+    /* Chat specific colors */
+    --chat-background: 25 50% 96%;
+    --chat-message-user: 27 87% 55%;
+    --chat-message-user-foreground: 0 0% 100%;
+    --chat-message-bot: 0 0% 100%;
+    --chat-message-bot-foreground: 210 20% 15%;
+
+    /* Cards and surfaces */
+    --card: 0 0% 100%;
+    --card-foreground: 210 20% 15%;
+    --card-hover: 25 30% 96%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 20% 15%;
+
+    /* Interactive elements */
+    --primary: 27 87% 55%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 27 87% 50%;
+
+    --secondary: 45 100% 90%;
+    --secondary-foreground: 210 20% 15%;
+    --secondary-hover: 45 100% 85%;
+
+    /* Subtle elements */
+    --muted: 25 20% 94%;
+    --muted-foreground: 210 10% 50%;
+
+    --accent: 45 100% 90%;
+    --accent-foreground: 210 20% 15%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Borders and inputs */
+    --border: 25 15% 88%;
+    --input: 25 15% 88%;
+    --input-focus: 27 87% 55%;
+    --ring: 27 87% 55%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Subtle dark mode - not too black for better readability */
+    --background: 220 13% 8%;
+    --foreground: 220 8% 95%;
+
+    /* Chat specific colors */
+    --chat-background: 220 13% 6%;
+    --chat-message-user: 25 95% 53%;
+    --chat-message-user-foreground: 0 0% 100%;
+    --chat-message-bot: 220 13% 12%;
+    --chat-message-bot-foreground: 220 8% 92%;
+
+    /* Cards and surfaces */
+    --card: 220 13% 11%;
+    --card-foreground: 220 8% 92%;
+    --card-hover: 220 13% 14%;
+
+    --popover: 220 13% 11%;
+    --popover-foreground: 220 8% 92%;
+
+    /* Interactive elements */
+    --primary: 25 95% 53%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 25 95% 48%;
+
+    --secondary: 220 13% 16%;
+    --secondary-foreground: 220 8% 92%;
+    --secondary-hover: 220 13% 20%;
+
+    /* Subtle elements */
+    --muted: 220 13% 16%;
+    --muted-foreground: 220 5% 65%;
+
+    --accent: 220 13% 16%;
+    --accent-foreground: 220 8% 92%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Borders and inputs */
+    --border: 220 13% 18%;
+    --input: 220 13% 18%;
+    --input-focus: 25 95% 53%;
+    --ring: 25 95% 53%;
+
+    --sidebar-background: 220 13% 8%;
+    --sidebar-foreground: 220 8% 95%;
+    --sidebar-primary: 25 95% 53%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 13% 16%;
+    --sidebar-accent-foreground: 220 8% 95%;
+    --sidebar-border: 220 13% 18%;
+    --sidebar-ring: 25 95% 53%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
