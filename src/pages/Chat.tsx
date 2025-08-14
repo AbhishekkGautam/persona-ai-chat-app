@@ -323,11 +323,13 @@ const Chat = () => {
                     handleSendMessage();
                   }
                 }}
-                className="min-h-[48px] max-h-32 resize-none border-border bg-background/70 focus:bg-background focus:border-orange-400 focus:ring-2 focus:ring-orange-200 dark:focus:ring-orange-800 rounded-xl px-4 py-3 shadow-sm transition-all duration-200"
+                className="min-h-[48px] max-h-32 resize-none border-border bg-background/70 focus:bg-background rounded-xl px-4 py-3 shadow-sm transition-all duration-200"
                 rows={1}
                 style={{
                   height: "auto",
                   minHeight: "48px",
+                  outline: "none",
+                  boxShadow: "none",
                 }}
               />
             </div>
