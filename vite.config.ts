@@ -7,13 +7,25 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 3000,
+    // Handle client-side routing during development
+    historyApiFallback: true,
   },
-  plugins: [
-    react()
-  ].filter(Boolean),
+  plugins: [react()].filter(Boolean),
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
+    },
+  },
+  // SPA fallback for React Router
+  preview: {
+    port: 3000,
+    host: "::",
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+      },
     },
   },
 }));

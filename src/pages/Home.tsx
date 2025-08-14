@@ -208,6 +208,15 @@ const Home = () => {
               className="text-orange-600 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300 font-medium transition-colors"
             >
               @helloAbhishekk
+            </a>{" "}
+            •{" "}
+            <a
+              href="https://github.com/AbhishekkGautam/persona-ai-chat-app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline text-muted-foreground dark:text-muted-foreground hover:text-foreground dark:hover:text-foreground font-medium transition-colors"
+            >
+              GitHub
             </a>
           </p>
         </div>
