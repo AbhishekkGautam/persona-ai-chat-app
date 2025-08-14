@@ -1,12 +1,22 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, Send, Coffee, Loader2 } from "lucide-react";
+import {
+  ArrowLeft,
+  Send,
+  Coffee,
+  Loader2,
+  Code,
+  User,
+  Briefcase,
+} from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { Badge } from "@/components/ui/badge";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { chatService } from "@/services/chatService";
 import type { ChatMessage } from "@/services/chatService";
+import { getPersonaConfig } from "@/config/personas";
 import ReactMarkdown from "react-markdown";
 
 interface Message {
@@ -40,6 +50,9 @@ const Chat = () => {
   const [newMessage, setNewMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
+  const [activeFilter, setActiveFilter] = useState<
+    "tech" | "career" | "casual" | "personal"
+  >("tech");
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const persona = personas[personaId as keyof typeof personas];
@@ -68,12 +81,13 @@ const Chat = () => {
     return <div>Persona not found</div>;
   }
 
-  const handleSendMessage = async () => {
-    if (!newMessage.trim() || isLoading) return;
+  const handleSendMessage = async (messageText?: string) => {
+    const messageToSend = messageText || newMessage;
+    if (!messageToSend.trim() || isLoading) return;
 
     const userMessage: Message = {
       id: Date.now().toString(),
-      content: newMessage,
+      content: messageToSend,
       sender: "user",
       timestamp: new Date(),
     };
@@ -84,10 +98,10 @@ const Chat = () => {
     // Update chat history for OpenAI
     const updatedHistory: ChatMessage[] = [
       ...chatHistory,
-      { role: "user", content: newMessage },
+      { role: "user", content: messageToSend },
     ];
 
-    const currentMessage = newMessage;
+    const currentMessage = messageToSend;
     setNewMessage("");
     setIsLoading(true);
 
@@ -175,32 +189,134 @@ const Chat = () => {
       <div className="flex-1 overflow-y-auto bg-muted/30 p-4">
         <div className="max-w-3xl mx-auto h-full flex flex-col">
           {messages.length === 0 && (
-            <motion.div
-              // initial={{ opacity: 0, y: 20 }
-              // animate={{ opacity: 1, y: 0 }}
-              // transition={{ duration: 0.4 }}
-              className="flex flex-col items-center justify-center h-full text-center py-12"
-            >
-              <div className="w-20 h-20 bg-orange-100 dark:bg-orange-950/50 rounded-full overflow-hidden mb-4">
-                <img
-                  src={persona.avatar}
-                  alt={persona.name}
-                  className="w-full h-full object-cover"
-                />
+            <div className="flex flex-col h-full">
+              {/* Header Section */}
+              <div className="flex flex-col items-center text-center pt-8 sm:pt-16 pb-6 sm:pb-8 px-4">
+                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden mb-3 sm:mb-4 ring-1 ring-border">
+                  <img
+                    src={persona.avatar}
+                    alt={persona.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-1">
+                  {persona.name}
+                </h2>
+                <p className="text-muted-foreground text-xs sm:text-sm max-w-xs sm:max-w-md leading-relaxed">
+                  {personaId === "hitesh"
+                    ? "चाय तैयार है? Let's have a casual chat about code, tech, or anything you want to know!"
+                    : "Ready to code and chill? Ask me anything about development, system design, or just chat!"}
+                </p>
               </div>
-              <h3 className="text-xl font-semibold text-foreground mb-2">
-                {persona.name}
-              </h3>
-              <p className="text-muted-foreground mb-6 max-w-md">
-                {personaId === "hitesh"
-                  ? "चाय तैयार है? ☕ Let's have a casual chat about code, tech, or anything you want to know!"
-                  : "Ready to code and chill? 🚀 Ask me anything about development, system design, or just chat!"}
-              </p>
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <Coffee className="w-4 h-4" />
-                <span>Start the conversation below</span>
+
+              {/* Conversation Starters Section */}
+              <div className="flex-1 flex flex-col justify-center">
+                <div className="w-full px-3 sm:px-6">
+                  <div className="text-center mb-6 sm:mb-12">
+                    <h3 className="text-sm sm:text-base font-medium text-muted-foreground mb-4 sm:mb-8">
+                      Choose a topic to get started
+                    </h3>
+
+                    {/* Filter Chips */}
+                    <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2 mb-6 sm:mb-12">
+                      <Badge
+                        variant={
+                          activeFilter === "tech" ? "default" : "secondary"
+                        }
+                        className={`cursor-pointer px-3 sm:px-6 py-1.5 sm:py-2 text-xs sm:text-sm font-medium rounded-full border-0 ${
+                          activeFilter === "tech"
+                            ? "text-background"
+                            : "bg-muted hover:bg-muted/80 text-muted-foreground"
+                        }`}
+                        onClick={() => setActiveFilter("tech")}
+                      >
+                        <Code className="w-3 h-3 sm:w-3.5 sm:h-3.5 mr-1 sm:mr-1.5" />
+                        Tech
+                      </Badge>
+                      <Badge
+                        variant={
+                          activeFilter === "career" ? "default" : "secondary"
+                        }
+                        className={`cursor-pointer px-3 sm:px-6 py-1.5 sm:py-2 text-xs sm:text-sm font-medium rounded-full border-0 ${
+                          activeFilter === "career"
+                            ? "text-background"
+                            : "bg-muted hover:bg-muted/80 text-muted-foreground"
+                        }`}
+                        onClick={() => setActiveFilter("career")}
+                      >
+                        <Briefcase className="w-3 h-3 sm:w-3.5 sm:h-3.5 mr-1 sm:mr-1.5" />
+                        Career
+                      </Badge>
+                      <Badge
+                        variant={
+                          activeFilter === "casual" ? "default" : "secondary"
+                        }
+                        className={`cursor-pointer px-3 sm:px-6 py-1.5 sm:py-2 text-xs sm:text-sm font-medium rounded-full border-0 ${
+                          activeFilter === "casual"
+                            ? "text-background"
+                            : "bg-muted hover:bg-muted/80 text-muted-foreground"
+                        }`}
+                        onClick={() => setActiveFilter("casual")}
+                      >
+                        <Coffee className="w-3 h-3 sm:w-3.5 sm:h-3.5 mr-1 sm:mr-1.5" />
+                        Casual
+                      </Badge>
+                      <Badge
+                        variant={
+                          activeFilter === "personal" ? "default" : "secondary"
+                        }
+                        className={`cursor-pointer px-3 sm:px-6 py-1.5 sm:py-2 text-xs sm:text-sm font-medium rounded-full border-0 ${
+                          activeFilter === "personal"
+                            ? "text-background"
+                            : "bg-muted hover:bg-muted/80 text-muted-foreground"
+                        }`}
+                        onClick={() => setActiveFilter("personal")}
+                      >
+                        <User className="w-3 h-3 sm:w-3.5 sm:h-3.5 mr-1 sm:mr-1.5" />
+                        Personal
+                      </Badge>
+                    </div>
+                  </div>
+
+                  {/* Categorized Starters */}
+                  <div className="space-y-4 sm:space-y-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 max-w-3xl mx-auto">
+                      {(() => {
+                        const allStarters = getPersonaConfig(
+                          personaId as string
+                        )?.conversationStarters;
+                        if (!allStarters) return [];
+
+                        // Show all questions from selected category
+                        const questionsToShow = allStarters[activeFilter] || [];
+
+                        return questionsToShow.map((starter, index) => (
+                          <Button
+                            key={index}
+                            variant="outline"
+                            className="text-left justify-start h-auto py-3 sm:py-4 px-3 sm:px-5 text-xs sm:text-sm font-normal bg-card border-border hover:bg-orange-50 hover:border-orange-200 dark:bg-card dark:border-border dark:hover:bg-orange-950/30 dark:hover:border-orange-800/50 whitespace-normal w-full rounded-lg"
+                            onClick={() => {
+                              handleSendMessage(starter);
+                            }}
+                          >
+                            <span className="block w-full text-left leading-relaxed break-words">
+                              {starter}
+                            </span>
+                          </Button>
+                        ));
+                      })()}
+                    </div>
+
+                    {/* Quick Info */}
+                    <div className="text-center pt-4 sm:pt-8">
+                      <p className="text-xs sm:text-sm text-muted-foreground/80">
+                        Or type your own question below
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </motion.div>
+            </div>
           )}
 
           {/* Messages Container */}
@@ -327,7 +443,7 @@ const Chat = () => {
             </div>
 
             <Button
-              onClick={handleSendMessage}
+              onClick={() => handleSendMessage(newMessage)}
               disabled={!newMessage.trim() || isLoading}
               size="sm"
               className="w-12 h-12 rounded-xl bg-orange-500 hover:bg-orange-600 disabled:bg-orange-300 disabled:hover:bg-orange-300 flex-shrink-0 shadow-sm transition-all duration-200 hover:shadow-md"
