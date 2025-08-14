@@ -49,6 +49,23 @@ const Chat = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+  // Mobile viewport height fix
+  useEffect(() => {
+    const setVH = () => {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty("--vh", `${vh}px`);
+    };
+
+    setVH();
+    window.addEventListener("resize", setVH);
+    window.addEventListener("orientationchange", setVH);
+
+    return () => {
+      window.removeEventListener("resize", setVH);
+      window.removeEventListener("orientationchange", setVH);
+    };
+  }, []);
+
   if (!persona) {
     return <div>Persona not found</div>;
   }
@@ -119,7 +136,7 @@ const Chat = () => {
   };
 
   return (
-    <div className="h-screen bg-background flex flex-col">
+    <div className="mobile-screen bg-background flex flex-col">
       {/* Header */}
       <header className="bg-background border-b border-border px-4 py-3 shadow-sm">
         <div className="max-w-3xl mx-auto flex items-center gap-3">

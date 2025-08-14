@@ -133,3 +133,18 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Mobile viewport height fix */
+@supports (height: 100dvh) {
+  .mobile-screen {
+    height: 100dvh;
+  }
+}
+
+/* Fallback for older browsers */
+@supports not (height: 100dvh) {
+  .mobile-screen {
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
+  }
+}
