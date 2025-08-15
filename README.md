@@ -40,6 +40,15 @@ VITE_OPENAI_MODEL=your_preferred_model
 
 Get your API key from [OpenAI Platform](https://platform.openai.com/api-keys).
 
+## Chats
+<img width="874" height="852" alt="Screenshot 2025-08-14 at 10 48 38 PM" src="https://github.com/user-attachments/assets/7a1240b3-0267-41be-8484-7b8ed330aa4d" />
+<img width="833" height="773" alt="Screenshot 2025-08-15 at 5 35 39 AM" src="https://github.com/user-attachments/assets/ef389503-5433-4d9f-8672-cef7bc7a4637" />
+<img width="849" height="499" alt="Screenshot 2025-08-15 at 4 58 40 AM" src="https://github.com/user-attachments/assets/03c7e057-44c4-4bc5-8646-1f0edd5082de" />
+<img width="810" height="753" alt="Screenshot 2025-08-15 at 5 37 15 AM" src="https://github.com/user-attachments/assets/2c07d58f-64b4-4386-9778-88f33fedd9bd" />
+<img width="869" height="992" alt="Screenshot 2025-08-15 at 4 31 28 AM" src="https://github.com/user-attachments/assets/92b7cff1-c619-46ad-a7f1-ebfb1e0eacda" />
+<img width="846" height="991" alt="Screenshot 2025-08-15 at 5 47 45 AM" src="https://github.com/user-attachments/assets/c3edbac4-c85a-4f74-82f8-3cfdc29b15cc" />
+
+
 ## 🛠️ Tech Stack
 
 - **Frontend**: React 18 + TypeScript + Vite
