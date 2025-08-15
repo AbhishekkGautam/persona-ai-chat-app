@@ -42,6 +42,7 @@ Get your API key from [OpenAI Platform](https://platform.openai.com/api-keys).
 
 ## Chats
 <img width="874" height="852" alt="Screenshot 2025-08-14 at 10 48 38 PM" src="https://github.com/user-attachments/assets/7a1240b3-0267-41be-8484-7b8ed330aa4d" />
+<img width="856" height="515" alt="Screenshot 2025-08-15 at 5 55 15 AM" src="https://github.com/user-attachments/assets/3543e31f-6d4c-42ef-9985-d1fe26da11c2" />
 <img width="833" height="773" alt="Screenshot 2025-08-15 at 5 35 39 AM" src="https://github.com/user-attachments/assets/ef389503-5433-4d9f-8672-cef7bc7a4637" />
 <img width="849" height="499" alt="Screenshot 2025-08-15 at 4 58 40 AM" src="https://github.com/user-attachments/assets/03c7e057-44c4-4bc5-8646-1f0edd5082de" />
 <img width="810" height="753" alt="Screenshot 2025-08-15 at 5 37 15 AM" src="https://github.com/user-attachments/assets/2c07d58f-64b4-4386-9778-88f33fedd9bd" />
